@@ -12,7 +12,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 all			:	${CLIENT} ${SERV}
 
-SRCS		=	main.c parse.c sort.c/
+SRCS		=	server.c /
 
 %.o			:	%.c
 		cc ${CFLAGS} -I ${LIBFT_DIR} -c $< -o $@
