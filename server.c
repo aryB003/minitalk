@@ -6,11 +6,11 @@
 /*   By: aryan <aryan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:45:41 by aryan             #+#    #+#             */
-/*   Updated: 2025/07/08 19:09:41 by aryan            ###   ########.fr       */
+/*   Updated: 2025/07/08 20:26:17 by aryan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "minitalk.h"
 
 void	handle_signal(int sig)
 {
@@ -27,7 +27,7 @@ void	handle_signal(int sig)
 	if (bit_count == 8)
 	{
 		write(1, &c, 1);  // Print the character
-		c = 0;            // Reset for next character
+		c = 0;          
 		bit_count = 0;
 	}
 }
