@@ -54,7 +54,7 @@ void send_message(pid_t pid, char* message)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
-			usleep(200);
+			usleep(400);
 			bitIndex--;
 		}
 		if (*message == '\0')
