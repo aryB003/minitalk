@@ -6,7 +6,7 @@
 /*   By: aryan <aryan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:45:51 by aryan             #+#    #+#             */
-/*   Updated: 2025/07/10 16:18:33 by aryan            ###   ########.fr       */
+/*   Updated: 2025/07/10 17:42:51 by aryan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_input(int argc, char **argv)
 
 void send_message(pid_t pid, char* message)
 {
-	while( *message != '\0')
+	while(1)
 	{
 		int bitIndex = 7;
 		while (bitIndex >= 0)
@@ -54,9 +54,11 @@ void send_message(pid_t pid, char* message)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
-			usleep(100);
+			usleep(200);
 			bitIndex--;
 		}
+		if (*message == '\0')
+			break;
 		message++;
 	}
 }

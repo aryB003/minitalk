@@ -6,7 +6,7 @@
 /*   By: aryan <aryan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:45:41 by aryan             #+#    #+#             */
-/*   Updated: 2025/07/10 16:45:00 by aryan            ###   ########.fr       */
+/*   Updated: 2025/07/10 17:28:35 by aryan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	handle_signal(int sig)
 	static unsigned char	c = 0;
 	static int				bit_count = 0;
 
-	c <<= 1; 
+	c <<= 1;
 
 	if (sig == SIGUSR1)
-		c |= 1;  
+		c |= 1;
 
 	bit_count++;
 
@@ -30,7 +30,7 @@ void	handle_signal(int sig)
 			write(1,"\n",1);
 		else
 			ft_printchar(c);
-		c = 0;          
+		c = 0;
 		bit_count = 0;
 	}
 }
