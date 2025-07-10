@@ -6,7 +6,7 @@
 /*   By: aryan <aryan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:45:41 by aryan             #+#    #+#             */
-/*   Updated: 2025/07/08 20:26:17 by aryan            ###   ########.fr       */
+/*   Updated: 2025/07/10 16:45:00 by aryan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	handle_signal(int sig)
 
 	if (bit_count == 8)
 	{
-		write(1, &c, 1);  // Print the character
+		if( c == '\0')
+			write(1,"\n",1);
+		else
+			ft_printchar(c);
 		c = 0;          
 		bit_count = 0;
 	}
@@ -41,6 +44,6 @@ int main(void)
 	signal(SIGUSR2, handle_signal);
 
 	while (1)
-		pause();  // Wait for incoming signal
+		pause();  
 	return (0);
 }

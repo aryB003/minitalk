@@ -12,7 +12,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 all			:	${CLIENT} ${SERV}
 
-SRCS		=	server.c /
+SRCS		=	server.c client.c utils.c
 
 %.o			:	%.c
 		cc ${CFLAGS} -I ${LIBFT_DIR} -c $< -o $@

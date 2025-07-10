@@ -6,13 +6,13 @@
 /*   By: aryan <aryan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:45:51 by aryan             #+#    #+#             */
-/*   Updated: 2025/07/08 22:55:35 by aryan            ###   ########.fr       */
+/*   Updated: 2025/07/10 16:18:33 by aryan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	recieved(int sig)
+static void	received(int sig)
 {
 	if (sig == SIGUSR1)
 	{
@@ -42,7 +42,31 @@ int	check_input(int argc, char **argv)
 	return (1);
 }
 
-int main()
+void send_message(pid_t pid, char* message)
 {
-    
+	while( *message != '\0')
+	{
+		int bitIndex = 7;
+		while (bitIndex >= 0)
+		{
+			int is_0 = (*message & 1 << bitIndex) == 0;
+			if (is_0)
+				kill(pid, SIGUSR2);
+			else
+				kill(pid, SIGUSR1);
+			usleep(100);
+			bitIndex--;
+		}
+		message++;
+	}
+}
+
+int main( int ac, char **av)
+{
+    int pid;
+	signal(SIGUSR1, received);
+	if(!check_input(ac,av))
+		return (1);
+	pid = ft_atoi(av[1]);
+	send_message(pid, av[2]);
 }
